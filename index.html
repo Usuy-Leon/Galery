@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fullscreen Slider with Mobile Gestures</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+        }
+
+        /* --- SLIDER --- */
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- CAPTION --- */
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 20px;
+            background: rgba(0,0,0,0.35);
+            color: white;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 8px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7);
+        }
+
+        /* --- NAV BUTTONS --- */
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+            color: white;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* --- EXTRA BOTTOM BUTTONS --- */
+        .bottom-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 18px;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+
+        .btn-small {
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(3px);
+        }
+
+        .hidden-buttons {
+            opacity: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-buttons">
+        <button id="homeBtn" class="top-btn"><i class="fas fa-house"></i></button>
+        <button id="galleryBtn" class="top-btn"><i class="fas fa-images"></i></button>
+    </div>
+
+    <div class="slider" id="slider">
+        <div class="slide active"><img src="https://picsum.photos/id/100/1600/900"><div class="caption">Forest path into the mist.</div></div>
+        <div class="slide"><img src="https://picsum.photos/id/237/1600/900"><div class="caption">A happy puppy in the morning light.</div></div>
+        <div class="slide"><img src="https://picsum.photos/id/220/1600/900"><div class="caption">City lights glowing beautifully.</div></div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="nav prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+    <!-- Bottom Buttons -->
+    <div class="bottom-buttons" id="bottomBtns">
+        <button class="btn-small" onclick="location.href='https://usuy-leon.github.io/home.github.io/'"><i class="fas fa-home"></i></button>
+        <button class="btn-small" onclick="openGallery()"><i class="fas fa-th"></i></button>
+        <button class="btn-small" id="themeBtn"><i class="fas fa-circle-half-stroke"></i></button>
+    </div>
+
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        const bottomBtns = document.getElementById('bottomBtns');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function showSlide(i) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[i].classList.add('active');
+        }
+
+        document.getElementById('nextBtn').onclick = () => {
+            index = (index + 1) % slides.length;
+            showSlide(index);
+        }
+
+        document.getElementById('prevBtn').onclick = () => {
+            index = (index - 1 + slides.length) % slides.length;
+            showSlide(index);
+        }
+
+        /* --- MOBILE SWIPE GESTURES --- */
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            if (touchEndX < touchStartX - 50) {
+                index = (index + 1) % slides.length;
+                showSlide(index);
+            }
+            if (touchEndX > touchStartX + 50) {
+                index = (index - 1 + slides.length) % slides.length;
+                showSlide(index);
+            }
+        }
+
+        /* --- SCROLL HIDE BUTTONS --- */
+        let hideTimeout;
+        window.addEventListener('scroll', () => {
+            bottomBtns.classList.add('hidden-buttons');
+            clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(() => {
+                bottomBtns.classList.remove('hidden-buttons');
+            }, 1200);
+        });
+
+        function openGallery() {
+            alert('Opening previous multi‑image gallery…');
+        }
+    </script>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://picsum.photos/id/200/600/400"><p>Forest path</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/237/600/400"><p>Puppy morning</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/231/600/400"><p>Night cityscape</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/225/600/400"><p>Geometric motion</p></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
