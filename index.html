@@ -7,200 +7,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; font-family: Arial, sans-serif; }
+        body { background: #000; overflow: hidden; }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            background: #000;
-        }
+        /* SLIDER */
+        .slider { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+        .slide { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; transition: opacity 0.8s ease; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- SLIDER --- */
-        .slider {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- CAPTION --- */
+        /* CAPTION */
         .caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 20px;
-            background: rgba(0,0,0,0.35);
-            color: white;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            text-shadow: 0 0 8px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7);
+            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+            padding: 12px 20px; background: rgba(0,0,0,0.35); color: white; border-radius: 8px;
+            font-size: 1.2rem; text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(255,255,255,0.04);
         }
 
-        /* --- NAV BUTTONS --- */
-        .nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 28px;
-            color: white;
-            background: rgba(0, 0, 0, 0.4);
-            border: none;
-            padding: 10px 14px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
+        /* NAV */
+        .nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 24px; color: white;
+            background: rgba(0,0,0,0.45); border: none; padding: 10px 12px; border-radius: 50%; cursor: pointer; z-index: 50;
         }
+        .prev { left: 12px; } .next { right: 12px; }
 
-        .prev { left: 15px; }
-        .next { right: 15px; }
+        /* TOP BUTTONS */
+        .top-buttons { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); display:flex; gap:12px; z-index:4000; transition: opacity 0.35s ease, transform 0.35s ease; }
+        .top-btn { background: rgba(0,0,0,0.6); color: #fff; border: none; padding: 10px 12px; border-radius: 50%; font-size: 16px; backdrop-filter: blur(6px); cursor: pointer; }
+        .top-btn:hover { transform: scale(1.08); }
 
-        /* --- EXTRA BOTTOM BUTTONS --- */
-        .bottom-buttons {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 18px;
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
+        /* Modal (gallery) */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.45s ease; z-index: 4500; }
+        .modal.show { display: block; }
+        .modal-content { width: 92%; max-width: 980px; margin: 60px auto; background: rgba(255,255,255,0.06); backdrop-filter: blur(14px); padding: 18px; border-radius: 12px; transform: scale(0.95); opacity: 0; transition: all 0.35s ease; color: #fff; }
+        .modal-content.open { transform: scale(1); opacity: 1; }
+        .modal .close { position: absolute; top: 18px; right: 22px; font-size: 26px; color: #fff; cursor: pointer; }
 
-        .btn-small {
-            background: rgba(0, 0, 0, 0.4);
-            border: none;
-            padding: 12px;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            backdrop-filter: blur(3px);
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+        .gallery-item { overflow: hidden; border-radius: 8px; }
+        .gallery-item img { width: 100%; height: 140px; object-fit: cover; display:block; }
+        .gallery-item p { color:#fff; padding:8px 6px; font-size:14px; text-align:center; }
 
-        .hidden-buttons {
-            opacity: 0 !important;
+        /* small screens tweaks */
+        @media (max-width: 700px) {
+            .caption { font-size: 1rem; padding: 10px 14px; }
+            .nav { font-size: 20px; padding: 8px 10px; }
+            .top-btn { padding: 8px 10px; font-size: 14px; }
+            .gallery-item img { height: 110px; }
         }
     </style>
 </head>
 <body>
-    <div class="top-buttons">
-        <button id="homeBtn" class="top-btn"><i class="fas fa-house"></i></button>
-        <button id="galleryBtn" class="top-btn"><i class="fas fa-images"></i></button>
+
+    <div class="top-buttons" id="topButtons">
+        <button id="homeBtn" class="top-btn" title="Home"><i class="fas fa-house"></i></button>
+        <button id="galleryBtn" class="top-btn" title="Gallery"><i class="fas fa-images"></i></button>
+        <button id="themeBtnTop" class="top-btn" title="Toggle theme"><i class="fas fa-circle-half-stroke"></i></button>
     </div>
 
     <div class="slider" id="slider">
-        <div class="slide active"><img src="https://picsum.photos/id/100/1600/900"><div class="caption">Forest path into the mist.</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/237/1600/900"><div class="caption">A happy puppy in the morning light.</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/220/1600/900"><div class="caption">City lights glowing beautifully.</div></div>
+        <div class="slide active"><img src="https://picsum.photos/id/100/1600/900" alt="slide-1"><div class="caption">Forest path into the mist.</div></div>
+        <div class="slide"><img src="https://picsum.photos/id/237/1600/900" alt="slide-2"><div class="caption">A happy puppy in the morning light.</div></div>
+        <div class="slide"><img src="https://picsum.photos/id/220/1600/900" alt="slide-3"><div class="caption">City lights glowing beautifully.</div></div>
     </div>
 
-    <!-- Navigation Arrows -->
-    <button class="nav prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    <button class="nav prev" id="prevBtn" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="nav next" id="nextBtn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
 
-    <!-- Bottom Buttons -->
-    <div class="bottom-buttons" id="bottomBtns">
-        <button class="btn-small" onclick="location.href='https://usuy-leon.github.io/home.github.io/'"><i class="fas fa-home"></i></button>
-        <button class="btn-small" onclick="openGallery()"><i class="fas fa-th"></i></button>
-        <button class="btn-small" id="themeBtn"><i class="fas fa-circle-half-stroke"></i></button>
-    </div>
-
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        const bottomBtns = document.getElementById('bottomBtns');
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        function showSlide(i) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[i].classList.add('active');
-        }
-
-        document.getElementById('nextBtn').onclick = () => {
-            index = (index + 1) % slides.length;
-            showSlide(index);
-        }
-
-        document.getElementById('prevBtn').onclick = () => {
-            index = (index - 1 + slides.length) % slides.length;
-            showSlide(index);
-        }
-
-        /* --- MOBILE SWIPE GESTURES --- */
-        document.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        });
-
-        function handleGesture() {
-            if (touchEndX < touchStartX - 50) {
-                index = (index + 1) % slides.length;
-                showSlide(index);
-            }
-            if (touchEndX > touchStartX + 50) {
-                index = (index - 1 + slides.length) % slides.length;
-                showSlide(index);
-            }
-        }
-
-        /* --- SCROLL HIDE BUTTONS --- */
-        let hideTimeout;
-        window.addEventListener('scroll', () => {
-            bottomBtns.classList.add('hidden-buttons');
-            clearTimeout(hideTimeout);
-            hideTimeout = setTimeout(() => {
-                bottomBtns.classList.remove('hidden-buttons');
-            }, 1200);
-        });
-
-        function openGallery() {
-            alert('Opening previous multi‑image gallery…');
-        }
-    </script>
-
-    <!-- Gallery Modal -->
     <div id="galleryModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
+            <h2 style="margin-bottom:15px; text-align:center;">Image Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://picsum.photos/id/200/600/400"><p>Forest path</p></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/237/600/400"><p>Puppy morning</p></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/231/600/400"><p>Night cityscape</p></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/225/600/400"><p>Geometric motion</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/100/300/200" alt="Thumb 1"><p>Forest Path</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/237/300/200" alt="Thumb 2"><p>Happy Puppy</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/220/300/200" alt="Thumb 3"><p>City Lights</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/10/300/200" alt="Thumb 4"><p>Ocean Sunset</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/50/300/200" alt="Thumb 5"><p>Mountain Peak</p></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/145/300/200" alt="Thumb 6"><p>Desert Dune</p></div>
             </div>
         </div>
     </div>
-</body>
+    </body>
 </html>
