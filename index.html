@@ -98,7 +98,52 @@
             align-items: center;
             justify-content: center;
         }
+        /* ============================================================
+        FIXED ACTIONS CONTAINER (Scroll-Hide Menu)
+        ============================================================ */
+        #fixedActions {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            display: flex; 
+            flex-direction: column;
+            gap: 10px; 
+            transition: transform 0.4s ease-out, opacity 0.4s; 
+        }
 
+
+        #fixedActions.hidden {
+            transform: translateX(80px); 
+            opacity: 0;
+            pointer-events: none; /* Prevents interaction when hidden */
+        }
+
+        #fixedActions button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        html[data-theme="dark"] #fixedActions button {
+            background: var(--accent);
+            color: #1c1c1c;
+        }
+
+        #fixedActions button:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+        }
 
         /* --- Filter Buttons --- */
         .filter-container {
@@ -190,6 +235,7 @@
             opacity: 0.5;
             font-style: italic;
         }
+        
 
         /* --- Lightbox Modal Styling (No changes needed) --- */
         .modal {
@@ -306,10 +352,16 @@
     </style>
 </head>
 <body>
-
+<div id="fixedActions">
+        <!-- Home BUTTON -->
+    <button id="Home" title="Home" onclick="window.location.href='https://usuy-leon.github.io/home.github.io/';">
+        <i class="fa fa-home" aria-hidden="true"></i>
+    </button>
+    
     <button id="darkModeToggle" aria-label="Toggle dark mode">
         <i class="fas fa-moon"></i>
     </button>
+</div>
     <header>
         <h1>PERSONAL GALERY </h1>
         <h2>WELCOME TO MY MICROSCOPIC WORLD</h2>
