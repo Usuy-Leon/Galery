@@ -1,311 +1,416 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fullscreen Slider with Filter Gallery</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONK PARKER STYLE GALLERY</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================================================
-            THEME VARIABLES 
-        ============================================================ */
-        :root {
-            --bg: #000;
-            --text: #fff;
-            --btn-bg: rgba(0,0,0,0.6);
-            --btn-hover: rgba(255,255,255,0.2);
-            --modal-bg: rgba(0,0,0,0.9);
-            --modal-content-bg: #1a1a1a;
-            --accent-color: #3498db; /* Color for active filter button */
-        }
-        html[data-theme="dark"] {
-            --bg: #000;
-            --text: #fff;
-            --btn-bg: rgba(0,0,0,0.75);
-        }
-        
-        /* ============================================================
-            BASE STYLES
-        ============================================================ */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100%; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg); overflow: hidden; transition: background 0.3s; }
-
-        /* SLIDER & CAPTION */
-        .slider { position: relative; width: 100%; height: 100vh; overflow: hidden; z-index: 1; }
-        .slide { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; transition: opacity 0.8s ease; pointer-events: none; }
-        .slide.active { opacity: 1; pointer-events: auto; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
-
-        .caption {
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-            padding: 12px 24px; background: rgba(0,0,0,0.4); color: white; border-radius: 30px;
-            font-size: 1.1rem; backdrop-filter: blur(5px);
-            max-width: 90%; text-align: center; z-index: 10;
+        /* --- CSS Reset and Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* NAVIGATION BUTTONS */
-        .nav { 
-            position: absolute; top: 50%; transform: translateY(-50%); 
-            font-size: 24px; color: white;
-            background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); 
-            width: 50px; height: 50px; border-radius: 50%; cursor: pointer; 
-            z-index: 100; transition: all 0.2s ease;
-            display: flex; align-items: center; justify-content: center;
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Lora', serif; /* Applied Lora globally */
+            text-align: center;
+            padding: 20px;
         }
-        .nav:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.1); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
 
-        .top-buttons { 
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%); 
-            display:flex; gap:15px; z-index: 4000; 
+        /* --- Header Styling --- */
+        header {
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        .top-btn { 
-            background: var(--btn-bg); color: var(--text); 
-            width: 45px; height: 45px; border: 1px solid rgba(255,255,255,0.2); 
-            border-radius: 50%; font-size: 18px; backdrop-filter: blur(6px); cursor: pointer; 
-            transition: all 0.2s ease; display: flex; align-items: center; justify-content: center;
-        }
-        .top-btn:hover { transform: scale(1.1); background: var(--btn-hover); }
 
-        /* ============================================================
-            MODAL & GALLERY STYLES (UPDATED)
-        ============================================================ */
-        .modal { display: none; position: fixed; inset: 0; background: var(--modal-bg); backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.45s ease; z-index: 4500; }
-        .modal.show { display: block; }
-        
-        .modal-content { 
-            width: 90%; max-width: 1000px; margin: 40px auto; 
-            background: var(--modal-content-bg); 
-            padding: 25px; border-radius: 16px; 
-            transform: scale(0.95); opacity: 0; transition: all 0.35s ease; color: var(--text); 
-            border: 1px solid rgba(255,255,255,0.1);
-            max-height: 90vh; display: flex; flex-direction: column;
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #e0e0e0;
         }
-        .modal-content.open { transform: scale(1); opacity: 1; }
-        
-        .modal .close { 
-            position: absolute; top: 15px; right: 20px; 
-            font-size: 28px; color: #fff; cursor: pointer; z-index: 4600; opacity: 0.7;
-        }
-        .modal .close:hover { opacity: 1; color: #ff5555; }
 
-        /* --- 1. FILTER CATEGORY BAR --- */
-        .category-filters {
-            display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+        header h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #a0a0a0;
+            font-style: italic;
         }
+
+        /* --- Filter Buttons --- */
+        .filter-container {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .filter-btn {
-            padding: 8px 18px; border: none; background: rgba(255,255,255,0.1); 
-            color: #aaa; border-radius: 20px; cursor: pointer; 
-            font-size: 14px; transition: all 0.3s ease;
-        }
-        .filter-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
-        .filter-btn.active { background: var(--accent-color); color: #fff; font-weight: bold; }
-
-        /* --- 2. GRID LAYOUT (3 Columns) --- */
-        .gallery-grid { 
-            display: grid; 
-            /* This forces exactly 3 columns */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; 
-            overflow-y: auto; 
-            padding-right: 5px; /* Space for scrollbar */
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 8px 20px;
+            font-family: 'Lora', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        .gallery-item { 
-            border-radius: 8px; cursor: pointer; overflow: hidden; position: relative;
-            border: 2px solid transparent; transition: transform 0.2s; background: #000;
-            aspect-ratio: 4/3; /* Keeps images uniform shape */
-        }
-        
-        .gallery-item.hide { display: none; } /* Used by JS to filter */
-        
-        .gallery-item:hover { transform: scale(1.02); border-color: rgba(255,255,255,0.5); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        
-        .gallery-item p { 
-            position: absolute; bottom: 0; left: 0; width: 100%; 
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: #fff; padding: 10px; font-size: 13px; text-align: center; margin: 0; 
+        .filter-btn:hover, .filter-btn.active {
+            color: #fff;
+            border-color: #fff;
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            /* On tablets, go to 2 columns */
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .caption { font-size: 0.9rem; bottom: 70px; }
+        /* --- Gallery Grid Layout --- */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding-bottom: 50px;
         }
-        @media (max-width: 500px) {
-            /* On phones, go to 1 column */
-            .gallery-grid { grid-template-columns: 1fr; }
-            .category-filters { gap: 6px; }
-            .filter-btn { padding: 6px 12px; font-size: 12px; }
+
+        /* --- Individual Gallery Item Styling --- */
+        .gallery-item {
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .gallery-item.hide {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            opacity: 0.9;
+        }
+
+        .image-wrapper {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-info {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .album-artist {
+            font-weight: 700;
+            color: #cccccc;
+            margin-bottom: 4px;
+        }
+
+        .album-title {
+            color: #888888;
+            font-style: italic;
+        }
+
+        /* --- Lightbox Modal Styling --- */
+        .modal {
+            display: none;
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image-container {
+             position: relative;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             width: 90%;
+             height: 70%; /* Reduced slightly to make room for description */
+             overflow: hidden; /* Changed to hidden for clean zoom */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content.zoomed {
+            transform: scale(1.5);
+            cursor: grab;
+        }
+
+        /* --- Description Overlay --- */
+        .description-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Transparent background */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Hide description when zoomed to see details */
+        .modal-content.zoomed + .description-overlay {
+            transform: translateY(100%); 
+        }
+
+        .desc-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        /* --- Controls --- */
+        .controls-container {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 1001;
+        }
+
+        .control-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid #555;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'Lora', serif;
+            transition: background-color 0.2s;
+        }
+        
+        .control-btn:hover {
+             background-color: rgba(255, 255, 255, 0.3);
+             border-color: #fff;
+        }
+
+        .close-btn-top {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1002;
+            font-family: sans-serif; /* Keep X symbol simple */
+        }
+
+        /* --- Responsive --- */
+        @media only screen and (max-width: 768px) {
+            .gallery-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media only screen and (max-width: 480px) {
+            .gallery-container { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8rem; }
+            .desc-text { font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-buttons">
-        <button id="homeBtn" class="top-btn" title="Go to Start"><i class="fas fa-house"></i></button> 
-        <button id="galleryBtn" class="top-btn" title="Gallery"><i class="fas fa-images"></i></button>
-        <button id="themeBtnTop" class="top-btn" title="Toggle theme"><i class="fas fa-circle-half-stroke"></i></button>
+    <header>
+        <h1>MONK PARKER</h1>
+        <h2>LOST WORLD RADIO</h2>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="classical">Classical</button>
+        <button class="filter-btn" data-filter="experimental">Experimental</button>
+        <button class="filter-btn" data-filter="world">World Music</button>
     </div>
 
-    <div class="slider" id="slider">
-        <div class="slide active"><img src="https://picsum.photos/id/100/1600/900" alt="slide-1"><div class="caption">Forest path (Nature)</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/237/1600/900" alt="slide-2"><div class="caption">Happy puppy (Animals)</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/220/1600/900" alt="slide-3"><div class="caption">City lights (Urban)</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/10/1600/900" alt="slide-4"><div class="caption">Ocean Sunset (Nature)</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/50/1600/900" alt="slide-5"><div class="caption">Mountain Peak (Nature)</div></div>
-        <div class="slide"><img src="https://picsum.photos/id/145/1600/900" alt="slide-6"><div class="caption">Desert Dune (Nature)</div></div>
-    </div>
-
-    <button class="nav prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-
-    <div id="galleryModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2 style="margin-bottom:15px; text-align:center; color:white; font-weight: 300;">Gallery</h2>
-            
-            <div class="category-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="nature">Nature</button>
-                <button class="filter-btn" data-filter="urban">Urban</button>
-                <button class="filter-btn" data-filter="animals">Animals</button>
+    <main class="gallery-container">
+        
+        <div class="gallery-item" data-category="classical" data-description="A hauntingly beautiful choral composition composed by Arvo Pärt in 2004.">
+            <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1025/500/500" alt="Arvo Part">
             </div>
-
-            <div class="gallery-grid" id="galleryGrid">
-                <div class="gallery-item" data-slide-index="0" data-category="nature">
-                    <img src="https://picsum.photos/id/100/400/300" alt="Forest">
-                    <p>Forest Path</p>
-                </div>
-                <div class="gallery-item" data-slide-index="1" data-category="animals">
-                    <img src="https://picsum.photos/id/237/400/300" alt="Puppy">
-                    <p>Happy Puppy</p>
-                </div>
-                <div class="gallery-item" data-slide-index="2" data-category="urban">
-                    <img src="https://picsum.photos/id/220/400/300" alt="City">
-                    <p>City Lights</p>
-                </div>
-                <div class="gallery-item" data-slide-index="3" data-category="nature">
-                    <img src="https://picsum.photos/id/10/400/300" alt="Ocean">
-                    <p>Ocean Sunset</p>
-                </div>
-                <div class="gallery-item" data-slide-index="4" data-category="nature">
-                    <img src="https://picsum.photos/id/50/400/300" alt="Mountain">
-                    <p>Mountain Peak</p>
-                </div>
-                <div class="gallery-item" data-slide-index="5" data-category="nature">
-                    <img src="https://picsum.photos/id/145/400/300" alt="Desert">
-                    <p>Desert Dune</p>
-                </div>
+            <div class="album-info">
+                <div class="album-artist">ARVO PÄRT</div>
+                <div class="album-title">DA PACEM DOMINE</div>
             </div>
+        </div>
+
+        <div class="gallery-item" data-category="experimental" data-description="An improvised harp session recorded in a cavernous hall, exploring resonance and silence.">
+             <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1016/500/500" alt="Unknown">
+            </div>
+            <div class="album-info">
+                <div class="album-artist">UNKNOWN</div>
+                <div class="album-title">IMPROVISACIÓ ARPA</div>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="world" data-description="Traditional Gamelan music featuring bronze percussion instruments from Indonesia.">
+             <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1082/500/500" alt="Lou Harrison">
+            </div>
+            <div class="album-info">
+                <div class="album-artist">LOU HARRISON</div>
+                <div class="album-title">GENDING ALEXANDER</div>
+            </div>
+        </div>
+
+         <div class="gallery-item" data-category="classical" data-description="Rare violle pieces from the 17th century French Baroque period.">
+             <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1069/500/500" alt="M de Machy">
+            </div>
+            <div class="album-info">
+                <div class="album-artist">M'DE MACHY</div>
+                <div class="album-title">PIECES DE VIOLLE</div>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="experimental" data-description="Ceremonial music reimagined through modern experimental orchestration.">
+             <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1033/500/500" alt="Royal Orchestra">
+            </div>
+            <div class="album-info">
+                <div class="album-artist">ROYAL ORCHESTRA</div>
+                <div class="album-title">CEREMONIAL MUSIC</div>
+            </div>
+        </div>
+
+        <div class="gallery-item" data-category="world" data-description="A visual and auditory journey through the domestic lives of the 17th century Dutch Masters.">
+             <div class="image-wrapper">
+                <img src="https://picsum.photos/id/1059/500/500" alt="Dutch Masters">
+            </div>
+             <div class="album-info">
+                <div class="album-artist">DUTCH MASTERS</div>
+                <div class="album-title">INDOOR SCENES</div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="myModal" class="modal">
+        <span class="close-btn-top">&times;</span>
+        
+        <div class="modal-image-container">
+            <img class="modal-content" id="img01">
+            <div class="description-overlay">
+                <p class="desc-text" id="modalDescText"></p>
+            </div>
+        </div>
+        
+        <div class="controls-container">
+             <button id="zoomBtn" class="control-btn">Zoom In</button>
+             <button id="closeBtnBottom" class="control-btn">Close</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const homeBtn = document.getElementById('homeBtn');
-            const galleryBtn = document.getElementById('galleryBtn');
-            const galleryModal = document.getElementById('galleryModal');
-            const closeModal = document.getElementById('closeModal');
-            const modalContent = galleryModal.querySelector('.modal-content');
-            const galleryGrid = document.getElementById('galleryGrid');
-            const themeBtn = document.getElementById('themeBtnTop');
-            const html = document.documentElement;
-            
-            // NEW: Select all filter buttons and gallery items
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+        // --- FILTER FUNCTIONALITY ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
-            let currentSlide = 0;
-            let touchStartX = 0;
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Active class styling
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-            // --- Slider Logic ---
-            function showSlide(index) {
-                if (index >= slides.length) currentSlide = 0;
-                else if (index < 0) currentSlide = slides.length - 1;
-                else currentSlide = index;
+                const filterValue = btn.getAttribute('data-filter');
 
-                slides.forEach(slide => slide.classList.remove('active'));
-                slides[currentSlide].classList.add('active');
-            }
-
-            // --- Filter Logic (The new requested feature) ---
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // 1. Remove active class from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    // 2. Add active class to clicked button
-                    btn.classList.add('active');
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    // 3. Loop through images and show/hide based on category
-                    galleryItems.forEach(item => {
-                        const itemCategory = item.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || itemCategory === filterValue) {
-                            item.classList.remove('hide');
-                        } else {
-                            item.classList.add('hide');
-                        }
-                    });
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
                 });
             });
+        });
 
-            // --- Modal Functions ---
-            function openModal() {
-                galleryModal.classList.add('show');
-                setTimeout(() => modalContent.classList.add('open'), 10);
-            }
+        // --- MODAL FUNCTIONALITY ---
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        const modalDescText = document.getElementById("modalDescText");
+        const closeBtnTop = document.querySelector(".close-btn-top");
+        const closeBtnBottom = document.getElementById("closeBtnBottom");
+        const zoomBtn = document.getElementById("zoomBtn");
+        let isZoomed = false;
 
-            function closeModalFunc() {
-                modalContent.classList.remove('open');
-                setTimeout(() => galleryModal.classList.remove('show'), 350);
-            }
+        // Open Modal
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const description = this.getAttribute('data-description');
 
-            // --- Event Listeners ---
-            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showSlide(currentSlide - 1); });
-            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showSlide(currentSlide + 1); });
-            if(homeBtn) homeBtn.addEventListener('click', () => showSlide(0));
+                modal.style.display = "flex";
+                modalImg.src = img.src;
+                modalDescText.textContent = description;
+                
+                resetZoom();
+            });
+        });
+
+        // Close Functions
+        function closeModal() {
+            modal.style.display = "none";
+            resetZoom();
+        }
+
+        closeBtnTop.onclick = closeModal;
+        closeBtnBottom.onclick = closeModal;
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Zoom Functions
+        function resetZoom() {
+            isZoomed = false;
+            modalImg.classList.remove("zoomed");
+            zoomBtn.textContent = "Zoom In";
+        }
+
+        zoomBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            isZoomed = !isZoomed;
             
-            galleryBtn.addEventListener('click', openModal);
-            closeModal.addEventListener('click', closeModalFunc);
-            galleryModal.addEventListener('click', (e) => { if(e.target === galleryModal) closeModalFunc(); });
-
-            galleryGrid.addEventListener('click', (e) => {
-                let item = e.target.closest('.gallery-item');
-                if (item) {
-                    const index = parseInt(item.getAttribute('data-slide-index'));
-                    showSlide(index);
-                    closeModalFunc();
-                }
-            });
-
-            themeBtn.addEventListener('click', () => {
-                const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                html.setAttribute('data-theme', newTheme);
-            });
-
-            // --- Mobile Swipe ---
-            const slider = document.getElementById('slider');
-            slider.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, {passive: true});
-            slider.addEventListener('touchend', (e) => {
-                if (!e.changedTouches || e.changedTouches.length === 0) return;
-                const deltaX = e.changedTouches[0].clientX - touchStartX;
-                if (deltaX > 50) showSlide(currentSlide - 1);
-                else if (deltaX < -50) showSlide(currentSlide + 1);
-            });
-
-            showSlide(currentSlide);
+            if (isZoomed) {
+                modalImg.classList.add("zoomed");
+                zoomBtn.textContent = "Zoom Out";
+            } else {
+                modalImg.classList.remove("zoomed");
+                zoomBtn.textContent = "Zoom In";
+            }
         });
     </script>
 </body>
