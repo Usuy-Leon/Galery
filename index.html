@@ -155,6 +155,54 @@
             justify-content: center;
         }
 
+        /* --- Custom Scrollbar Styling --- */
+        /* Webkit browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.3);
+            background-clip: content-box;
+        }
+
+        /* Dark mode scrollbar */
+        .dark-mode ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .dark-mode ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            background-clip: content-box;
+        }
+
+        .dark-mode ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+            background-clip: content-box;
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode * {
+            scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+        }
+
         /* ============================================================
         FIXED ACTIONS CONTAINER (Scroll-Hide Menu)
         ============================================================ */
@@ -282,6 +330,7 @@
             margin-bottom: 15px;
             border: 1px solid var(--btn-border);
             /* Used theme variable */
+            position: relative;
         }
 
         .gallery-item img {
@@ -289,6 +338,30 @@
             height: 120%;
             object-fit: cover;
             display: block;
+        }
+
+        /* Video Play Icon Overlay */
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover .video-icon {
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .album-info {
@@ -585,6 +658,56 @@
 
     <main class="gallery-container">
 
+        <!-- ========================================================================
+             HOW TO ADD NEW IMAGES OR VIDEOS TO THE GALLERY
+             ========================================================================
+             
+             To add a new IMAGE to the gallery, copy one of the existing image items
+             and modify it. Here's the structure:
+             
+             <div class="gallery-item" data-category="YourCategory" 
+                  data-description="Your description here">
+                 <div class="image-wrapper">
+                     <img src="YOUR_IMAGE_URL_OR_PATH" alt="Alt text">
+                 </div>
+                 <div class="album-info">
+                     <div class="album-artist">ARTIST NAME</div>
+                     <div class="album-title">IMAGE TITLE</div>
+                 </div>
+             </div>
+             
+             To add a new VIDEO to the gallery, use this structure:
+             
+             <div class="gallery-item" data-artist="Artist Name" data-title="Video Title" 
+                  data-category="YourCategory" data-video-src="YOUR_VIDEO.mp4" 
+                  data-description="Your video description">
+                 <div class="image-wrapper">
+                     <img src="THUMBNAIL_IMAGE_URL" alt="Video Thumbnail">
+                     <div class="video-icon">
+                         <i class="fas fa-play"></i>
+                     </div>
+                 </div>
+                 <div class="album-info">
+                     <div class="album-artist">ARTIST/CREATOR</div>
+                     <div class="album-title">VIDEO TITLE</div>
+                 </div>
+             </div>
+             
+             KEY DIFFERENCES FOR VIDEOS:
+             - Add data-video-src="path/to/video.mp4" attribute
+             - Add data-artist and data-title attributes (for metadata panel)
+             - Include the video-icon div inside image-wrapper
+             - The img src should be a thumbnail/poster image for the video
+             - The video file should be in the same directory as index.html
+               OR use a relative/absolute path to the video file
+             
+             CATEGORIES:
+             To add a new category, add it to the filter buttons at the top:
+             <button class="filter-btn" data-filter="NewCategory">New Category</button>
+             
+             Then use data-category="NewCategory" on your gallery items.
+             ======================================================================== -->
+
         <div class="gallery-item" data-category="Fish"
             data-description="A hauntingly beautiful choral composition composed by Arvo Pärt in 2004.">
             <div class="image-wrapper">
@@ -640,6 +763,22 @@
             </div>
         </div>
 
+        <div class="gallery-item" data-artist="Unknown" data-title="Cerro del Pacande" data-category="Video"
+            data-video-src="CERRO DEL PACANDE.mp4"
+            data-description="A scenic video of Cerro del Pacande mountain range.">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Video Thumbnail">
+                <div class="video-icon">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+            <div class="album-info">
+                <div class="album-artist">NATURE</div>
+                <div class="album-title">CERRO DEL PACANDE</div>
+            </div>
+        </div>
+
         <div class="gallery-item" data-category="Fish"
             data-description="A visual and auditory journey through the domestic lives of the 17th century Dutch Masters.">
             <div class="image-wrapper">
@@ -656,8 +795,14 @@
     <div id="myModal" class="modal">
         <span class="close-btn-top">&times;</span>
 
-        <div class="modal-image-container">
-            <img class="modal-content" id="img01">
+        <div class="modal-content">
+            <img id="modalImg" src="" alt="Zoomed Image">
+            <video id="modalVideo" loop playsinline muted
+                style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
+            <div class="zoom-lens">
+                <canvas id="zoomCanvas" width="250" height="250"
+                    style="display: none; width: 100%; height: 100%;"></canvas>
+            </div>
             <div class="description-overlay">
                 <p class="desc-text" id="modalDescText"></p>
             </div>
@@ -753,7 +898,8 @@
 
         // --- MODAL FUNCTIONALITY ---
         const modal = document.getElementById("myModal");
-        const modalImg = document.getElementById("img01");
+        const modalImg = document.getElementById("modalImg");
+        const modalVideo = document.getElementById("modalVideo");
         const modalDescText = document.getElementById("modalDescText");
         const closeBtnTop = document.querySelector(".close-btn-top");
         const zoomBtn = document.getElementById("zoomBtn");
@@ -763,21 +909,65 @@
         const histogramPanel = document.getElementById("histogramPanel");
         const metadataContent = document.getElementById("metadataContent");
         const histogramCanvas = document.getElementById("histogramCanvas");
+        const zoomLens = document.querySelector(".zoom-lens");
+        const zoomCanvas = document.getElementById("zoomCanvas");
+        const zoomCtx = zoomCanvas.getContext('2d');
+
+        let currentMedia = null; // Tracks current active media (img or video)
+        let isVideo = false;
         let isZoomed = false;
+        let zoomAnimationId = null;
 
         // Open Modal
         galleryItems.forEach(item => {
             item.addEventListener('click', function () {
-                const img = this.querySelector('img');
-                const description = this.getAttribute('data-description');
-                const artist = this.querySelector('.album-artist').textContent;
-                const title = this.querySelector('.album-title').textContent;
-                const category = this.getAttribute('data-category');
-
                 modal.style.display = "flex";
-                modalImg.crossOrigin = "Anonymous"; // Enable CORS for histogram
-                modalImg.src = img.src;
-                modalDescText.textContent = description;
+                const videoSrc = this.getAttribute('data-video-src');
+
+                // Metadata extraction
+                const artist = this.getAttribute('data-artist') || this.querySelector('.album-artist')?.textContent || 'Unknown';
+                const title = this.getAttribute('data-title') || this.querySelector('.album-title')?.textContent || 'Untitled';
+                const category = this.getAttribute('data-category') || 'Uncategorized';
+                const description = this.getAttribute('data-description') || this.querySelector('.text')?.textContent || '';
+
+                if (videoSrc) {
+                    isVideo = true;
+                    modalImg.style.display = "none";
+                    modalVideo.style.display = "block";
+                    modalVideo.src = videoSrc;
+                    // Set crossOrigin only when needed for histogram (local videos don't need it for playback)
+                    // This prevents CORS errors with local video files
+                    modalVideo.removeAttribute('crossorigin');
+                    modalVideo.play();
+                    currentMedia = modalVideo;
+                    modalDescText.textContent = description;
+
+                    // Hide histogram button for videos (not useful/reliable for videos)
+                    histogramBtn.style.display = "none";
+
+                    // Update dimensions when metadata loads
+                    modalVideo.onloadedmetadata = () => {
+                        document.getElementById('metaDims').textContent = `${modalVideo.videoWidth} x ${modalVideo.videoHeight}`;
+                    };
+                } else {
+                    isVideo = false;
+                    modalVideo.style.display = "none";
+                    modalVideo.pause();
+                    modalImg.style.display = "block";
+                    const img = this.querySelector('img');
+                    modalImg.crossOrigin = "Anonymous"; // Enable CORS for histogram
+                    modalImg.src = img.src;
+                    currentMedia = modalImg;
+                    modalDescText.textContent = description;
+
+                    // Show histogram button for images
+                    histogramBtn.style.display = "flex";
+
+                    // Update dimensions when image loads
+                    modalImg.onload = () => {
+                        document.getElementById('metaDims').textContent = `${modalImg.naturalWidth} x ${modalImg.naturalHeight}`;
+                    };
+                }
 
                 // --- CODE NOTE: How to Add More Metadata ---
                 // To add more metadata fields:
@@ -797,10 +987,6 @@
                     <div class="metadata-item"><span class="metadata-label">Dimensions</span><span id="metaDims">Loading...</span></div>
                 `;
 
-                modalImg.onload = function () {
-                    document.getElementById('metaDims').textContent = `${this.naturalWidth} x ${this.naturalHeight} px`;
-                };
-
                 resetZoom();
                 hidePanels();
             });
@@ -815,6 +1001,10 @@
         function closeModal() {
             modal.style.display = "none";
             resetZoom();
+            modalVideo.pause();
+            modalVideo.src = ""; // Stop buffering
+            if (zoomAnimationId) cancelAnimationFrame(zoomAnimationId);
+            hidePanels(); // Ensure panels are hidden on close
         }
 
         closeBtnTop.onclick = closeModal;
@@ -823,19 +1013,24 @@
         });
 
         // Zoom Functions (Loupe)
-        let lens;
+        // let lens; // lens is now zoomLens
         let cx, cy;
 
         function resetZoom() {
             isZoomed = false;
             // Remove lens if it exists
-            if (lens) {
-                lens.remove();
-                lens = null;
+            if (zoomLens) {
+                zoomLens.style.display = "none";
+                zoomCanvas.style.display = "none";
             }
             // Remove event listeners
-            modalImg.removeEventListener("mousemove", moveLens);
-            modalImg.removeEventListener("touchmove", moveLens);
+            if (currentMedia) {
+                currentMedia.removeEventListener("mousemove", moveLens);
+                currentMedia.removeEventListener("touchmove", moveLens);
+            }
+            zoomLens.removeEventListener("mousemove", moveLens);
+            zoomLens.removeEventListener("touchmove", moveLens);
+
 
             // Reset button icon
             zoomBtn.innerHTML = '<i class="fas fa-search-plus"></i>';
@@ -849,49 +1044,71 @@
             e.preventDefault();
             const pos = getCursorPos(e);
 
-            // Calculate position of lens (relative to image)
-            let x = pos.x - (lens.offsetWidth / 2);
-            let y = pos.y - (lens.offsetHeight / 2);
+            // Calculate lens position
+            let x = pos.x - (zoomLens.offsetWidth / 2);
+            let y = pos.y - (zoomLens.offsetHeight / 2);
 
             // Prevent lens from being positioned outside the image
-            if (x > modalImg.width - lens.offsetWidth) { x = modalImg.width - lens.offsetWidth; }
+            if (x > currentMedia.offsetWidth - zoomLens.offsetWidth) { x = currentMedia.offsetWidth - zoomLens.offsetWidth; }
             if (x < 0) { x = 0; }
-            if (y > modalImg.height - lens.offsetHeight) { y = modalImg.height - lens.offsetHeight; }
+            if (y > currentMedia.offsetHeight - zoomLens.offsetHeight) { y = currentMedia.offsetHeight - zoomLens.offsetHeight; }
             if (y < 0) { y = 0; }
 
-            // Set lens position (relative to container, so add image offset)
-            lens.style.left = (x + modalImg.offsetLeft) + "px";
-            lens.style.top = (y + modalImg.offsetTop) + "px";
+            // Set lens position
+            zoomLens.style.left = x + "px";
+            zoomLens.style.top = y + "px";
 
-            // Display what the lens "sees"
-            // To perfectly match, we need to calculate where the center of the lens is relative to the image
-            // and map that to the zoomed image.
-            // Lens center relative to image:
-            const lensCX = x + (lens.offsetWidth / 2);
-            const lensCY = y + (lens.offsetHeight / 2);
+            // Display zoomed content
+            if (isVideo) {
+                zoomCanvas.style.display = 'block';
+                zoomLens.style.backgroundImage = 'none';
 
-            // Background position:
-            // We want the point (lensCX, lensCY) on the original image to be at the center of the lens.
-            // The background image is scaled by cx, cy.
-            // So the point on the background image is (lensCX * cx, lensCY * cy).
-            // We want this point to be at the center of the lens (lens.offsetWidth/2, lens.offsetHeight/2).
-            // So background-position-x = (lens.offsetWidth/2) - (lensCX * cx)
-            // But standard background-position is negative to move the image left/up.
+                // Calculate source coordinates on the video
+                // currentMedia.offsetWidth is the displayed width, videoWidth is intrinsic
+                const scaleX = modalVideo.videoWidth / currentMedia.offsetWidth;
+                const scaleY = modalVideo.videoHeight / currentMedia.offsetHeight;
 
-            lens.style.backgroundPosition = "-" + ((lensCX * cx) - lens.offsetWidth / 2) + "px -" + ((lensCY * cy) - lens.offsetHeight / 2) + "px";
+                const srcX = x * scaleX;
+                const srcY = y * scaleY;
+                const srcW = zoomLens.offsetWidth * scaleX / 2; // 2x zoom means showing half the area
+                const srcH = zoomLens.offsetHeight * scaleY / 2;
+
+                zoomCtx.drawImage(modalVideo, srcX, srcY, srcW, srcH, 0, 0, zoomCanvas.width, zoomCanvas.height);
+
+                // Keep updating if video is playing
+                if (!modalVideo.paused && !modalVideo.ended) {
+                    // We rely on mousemove for now, but could use RAF loop if needed for smoother video zoom
+                    // For now, let's just draw on move.
+                }
+
+            } else {
+                zoomCanvas.style.display = 'none';
+                const cx = currentMedia.naturalWidth / currentMedia.offsetWidth;
+                const cy = currentMedia.naturalHeight / currentMedia.offsetHeight;
+                zoomLens.style.backgroundImage = "url('" + modalImg.src + "')";
+                zoomLens.style.backgroundSize = (currentMedia.offsetWidth * cx * 2) + "px " + (currentMedia.offsetHeight * cy * 2) + "px";
+                zoomLens.style.backgroundPosition = "-" + (x * cx * 2) + "px -" + (y * cy * 2) + "px";
+            }
         }
 
         function getCursorPos(e) {
-            let a, x = 0, y = 0;
+            const a = currentMedia.getBoundingClientRect();
             e = e || window.event;
-            /* Get the x and y positions of the image: */
-            a = modalImg.getBoundingClientRect();
-            /* Calculate the cursor's x and y coordinates, relative to the image: */
-            x = e.pageX - a.left;
-            y = e.pageY - a.top;
-            /* Consider any page scrolling: */
+            let pageX = e.pageX;
+            let pageY = e.pageY;
+
+            // Handle touch events
+            if (e.changedTouches) {
+                pageX = e.changedTouches[0].pageX;
+                pageY = e.changedTouches[0].pageY;
+            }
+
+            let x = pageX - a.left;
+            let y = pageY - a.top;
+
             x = x - window.pageXOffset;
             y = y - window.pageYOffset;
+
             return { x: x, y: y };
         }
 
@@ -900,38 +1117,28 @@
             isZoomed = !isZoomed;
 
             if (isZoomed) {
-                // Create lens
-                lens = document.createElement("DIV");
-                lens.setAttribute("class", "zoom-lens");
-
-                // Insert lens before the image
-                modalImg.parentElement.insertBefore(lens, modalImg);
-
-                // Calculate ratio
-                // Assuming 2x zoom for the lens
-                const zoomLevel = 2;
-
-                // We need the actual natural dimensions of the image to do high-res zoom if possible,
-                // but for simplicity we will just scale the current image source
-
-                lens.style.backgroundImage = "url('" + modalImg.src + "')";
-
-                // Calculate ratio between lens and image
-                // We want the background size to be (image width * zoom) x (image height * zoom)
-                cx = zoomLevel;
-                cy = zoomLevel;
-
-                lens.style.backgroundSize = (modalImg.width * cx) + "px " + (modalImg.height * cy) + "px";
+                if (isVideo) {
+                    // Zoom not supported for video yet, or implement video-specific zoom
+                    // For now, just toggle the button back if it's a video
+                    // Or, if we want to allow it, ensure currentMedia is correctly set
+                    // and moveLens handles it.
+                    // The provided code already has video handling in moveLens, so we proceed.
+                }
 
                 // Show lens
-                lens.style.display = "block";
+                zoomLens.style.display = "block";
+                if (isVideo) {
+                    zoomCanvas.style.display = 'block';
+                } else {
+                    zoomCanvas.style.display = 'none';
+                }
 
                 // Add listeners
-                modalImg.addEventListener("mousemove", moveLens);
-                lens.addEventListener("mousemove", moveLens);
+                currentMedia.addEventListener("mousemove", moveLens);
+                zoomLens.addEventListener("mousemove", moveLens);
 
-                modalImg.addEventListener("touchmove", moveLens);
-                lens.addEventListener("touchmove", moveLens);
+                currentMedia.addEventListener("touchmove", moveLens);
+                zoomLens.addEventListener("touchmove", moveLens);
 
                 // Change icon
                 zoomBtn.innerHTML = '<i class="fas fa-search-minus"></i>';
@@ -977,11 +1184,28 @@
             // Create a temporary canvas to read pixel data
             const tempCanvas = document.createElement('canvas');
             const tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = modalImg.naturalWidth;
-            tempCanvas.height = modalImg.naturalHeight;
+
+            let sourceWidth, sourceHeight;
+
+            if (isVideo) {
+                sourceWidth = modalVideo.videoWidth;
+                sourceHeight = modalVideo.videoHeight;
+                // For histogram, we need to set crossOrigin temporarily
+                // Note: This may fail for local videos due to CORS
+                if (!modalVideo.hasAttribute('crossorigin')) {
+                    modalVideo.setAttribute('crossorigin', 'anonymous');
+                    modalVideo.load(); // Reload with new crossOrigin setting
+                }
+            } else {
+                sourceWidth = modalImg.naturalWidth;
+                sourceHeight = modalImg.naturalHeight;
+            }
+
+            tempCanvas.width = sourceWidth;
+            tempCanvas.height = sourceHeight;
 
             try {
-                tempCtx.drawImage(modalImg, 0, 0, tempCanvas.width, tempCanvas.height);
+                tempCtx.drawImage(currentMedia, 0, 0, tempCanvas.width, tempCanvas.height);
                 const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height).data;
 
                 const rCount = new Array(256).fill(0);
