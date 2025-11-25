@@ -1021,6 +1021,7 @@
             // Remove lens if it exists
             if (zoomLens) {
                 zoomLens.style.display = "none";
+                zoomLens.style.backgroundImage = "none";
                 zoomCanvas.style.display = "none";
             }
             // Remove event listeners
@@ -1055,8 +1056,8 @@
             if (y < 0) { y = 0; }
 
             // Set lens position
-            zoomLens.style.left = x + "px";
-            zoomLens.style.top = y + "px";
+            zoomLens.style.left = (x + currentMedia.offsetLeft) + "px";
+            zoomLens.style.top = (y + currentMedia.offsetTop) + "px";
 
             // Display zoomed content
             if (isVideo) {
