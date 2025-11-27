@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -434,6 +434,7 @@
             background: rgba(0, 0, 0, 0.6);
             color: #fff;
             padding: 20px;
+            /* Reverted padding since buttons are now at the top */
             text-align: center;
             backdrop-filter: blur(4px);
             transform: translateY(0);
@@ -454,7 +455,10 @@
         /* --- Controls --- */
         .controls-container {
             position: absolute;
-            bottom: 30px;
+            top: 20px;
+            bottom: auto;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             gap: 20px;
             z-index: 1001;
@@ -582,8 +586,10 @@
 
             @media (max-width: 768px) {
                 .modal-content {
-                    width: 95%;
-                    height: 90%;
+                    max-width: 95%;
+                    max-height: 90%;
+                    width: auto;
+                    height: auto;
                 }
 
                 .header-content {
@@ -642,9 +648,12 @@
             <i class="fas fa-moon"></i>
         </button>
     </div>
+
+
+
     <header>
         <div class="header-content">
-            <h1>MicroWorld</h1>
+            <h1>MicroGal</h1>
             <h2>My personal gallery of the unseen</h2>
         </div>
     </header>
@@ -764,7 +773,7 @@
         </div>
 
         <div class="gallery-item" data-artist="Unknown" data-title="Cerro del Pacande" data-category="Video"
-            data-video-src="CERRO DEL PACANDE.mp4"
+            data-video-src="AI images/CERRO DEL PACANDE.mp4"
             data-description="A scenic video of Cerro del Pacande mountain range.">
             <div class="image-wrapper">
                 <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
@@ -1013,9 +1022,20 @@
             if (e.target === modal) closeModal();
         });
 
+        // Video Play/Pause Events for Zoom Loop
+        modalVideo.addEventListener('play', () => {
+            if (isZoomed) videoZoomLoop();
+        });
+
+        modalVideo.addEventListener('pause', () => {
+            if (zoomAnimationId) cancelAnimationFrame(zoomAnimationId);
+        });
+
         // Zoom Functions (Loupe)
         // let lens; // lens is now zoomLens
         let cx, cy;
+        let lastLensX = 0;
+        let lastLensY = 0;
 
         function resetZoom() {
             isZoomed = false;
@@ -1060,29 +1080,15 @@
             zoomLens.style.left = (x + currentMedia.offsetLeft) + "px";
             zoomLens.style.top = (y + currentMedia.offsetTop) + "px";
 
+            // Store last position for the loop
+            lastLensX = x;
+            lastLensY = y;
+
             // Display zoomed content
             if (isVideo) {
                 zoomCanvas.style.display = 'block';
                 zoomLens.style.backgroundImage = 'none';
-
-                // Calculate source coordinates on the video
-                // currentMedia.offsetWidth is the displayed width, videoWidth is intrinsic
-                const scaleX = modalVideo.videoWidth / currentMedia.offsetWidth;
-                const scaleY = modalVideo.videoHeight / currentMedia.offsetHeight;
-
-                const srcX = x * scaleX;
-                const srcY = y * scaleY;
-                const srcW = zoomLens.offsetWidth * scaleX / 2; // 2x zoom means showing half the area
-                const srcH = zoomLens.offsetHeight * scaleY / 2;
-
-                zoomCtx.drawImage(modalVideo, srcX, srcY, srcW, srcH, 0, 0, zoomCanvas.width, zoomCanvas.height);
-
-                // Keep updating if video is playing
-                if (!modalVideo.paused && !modalVideo.ended) {
-                    // We rely on mousemove for now, but could use RAF loop if needed for smoother video zoom
-                    // For now, let's just draw on move.
-                }
-
+                drawVideoZoom();
             } else {
                 zoomCanvas.style.display = 'none';
                 const cx = currentMedia.naturalWidth / currentMedia.offsetWidth;
@@ -1090,6 +1096,41 @@
                 zoomLens.style.backgroundImage = "url('" + modalImg.src + "')";
                 zoomLens.style.backgroundSize = (currentMedia.offsetWidth * cx * 2) + "px " + (currentMedia.offsetHeight * cy * 2) + "px";
                 zoomLens.style.backgroundPosition = "-" + (x * cx * 2) + "px -" + (y * cy * 2) + "px";
+            }
+        }
+
+        function drawVideoZoom() {
+            if (!isVideo || !isZoomed) return;
+
+            if (modalVideo.readyState < 2) {
+                return;
+            }
+
+            // Calculate source coordinates on the video
+            const scaleX = modalVideo.videoWidth / currentMedia.offsetWidth;
+            const scaleY = modalVideo.videoHeight / currentMedia.offsetHeight;
+
+            const srcX = lastLensX * scaleX;
+            const srcY = lastLensY * scaleY;
+            const srcW = zoomLens.offsetWidth * scaleX / 2; // 2x zoom means showing half the area
+            const srcH = zoomLens.offsetHeight * scaleY / 2;
+
+            try {
+                zoomCtx.drawImage(modalVideo, srcX, srcY, srcW, srcH, 0, 0, zoomCanvas.width, zoomCanvas.height);
+            } catch (e) {
+                console.error('Error drawing video zoom:', e);
+                // Draw error placeholder
+                zoomCtx.fillStyle = 'red';
+                zoomCtx.fillRect(0, 0, zoomCanvas.width, zoomCanvas.height);
+                zoomCtx.fillStyle = 'white';
+                zoomCtx.fillText('Error', 10, 20);
+            }
+        }
+
+        function videoZoomLoop() {
+            if (isVideo && isZoomed && !modalVideo.paused && !modalVideo.ended) {
+                drawVideoZoom();
+                zoomAnimationId = requestAnimationFrame(videoZoomLoop);
             }
         }
 
@@ -1141,6 +1182,11 @@
 
                 currentMedia.addEventListener("touchmove", moveLens);
                 zoomLens.addEventListener("touchmove", moveLens);
+
+                // Start loop if video is playing
+                if (isVideo && !modalVideo.paused) {
+                    videoZoomLoop();
+                }
 
                 // Change icon
                 zoomBtn.innerHTML = '<i class="fas fa-search-minus"></i>';
@@ -1257,6 +1303,9 @@
                 ctx.fillRect(i * barWidth, height - barHeight, barWidth, barHeight);
             }
         }
+
+
+
     </script>
 </body>
 
