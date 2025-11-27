@@ -22,25 +22,6 @@
         /* --- 2. Theme Variables & Base Styles --- */
         :root {
             /* Text & Colors */
-            --fg: #333;
-            /* Foreground text color */
-            --muted: #a0a0a0;
-
-            /* Backgrounds & Contrast */
-            --bg: #f5f5f5;
-            /* Fallback color for body */
-            --bg-image: url('https://Usuy-Leon.github.io/home.github.io/Imagenes/🌙_Dark_mode_edition.jpg.jpg');
-            --btn-bg: rgba(255, 255, 255, 0.7);
-            --btn-border: rgba(0, 0, 0, 0.12);
-            --text-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 2px rgba(0, 0, 0, 0.15);
-            /* clarity for text */
-
-            --font-serif: 'Lora', serif;
-        }
-
-
-        .dark-mode {
-            /* Text & Colors */
             --fg: #e0e0e0;
             --muted: #a0a0a0;
 
@@ -52,6 +33,8 @@
             --btn-border: rgba(255, 255, 255, 0.12);
             --text-shadow: 0 0 4px rgba(0, 0, 0, 0.5), 0 0 2px rgba(255, 255, 255, 0.1);
             /* clarity for text */
+
+            --font-serif: 'Lora', serif;
         }
 
         body {
@@ -122,37 +105,9 @@
             /* Apply text shadow for clarity over image */
         }
 
-        /* --- 3. Dark Mode Toggle Button (Fixes Applied) --- */
+        /* --- 3. Dark Mode Toggle Button (Hidden - Dark mode is now default) --- */
         #darkModeToggle {
-            /* Removed fixed positioning to allow flex layout in #fixedActions */
-            /* position: fixed; */
-            /* top: 80px; */
-            /* right: 20px; */
-            /* z-index: 1000; */
-
-            /* Size Adjustment (Increased padding/font-size) */
-            padding: 0.5rem 1rem;
-            /* Increased size */
-            font-size: 1.2rem;
-            /* Increased font size */
-
-            /* Your requested button styles */
-            border-radius: 999px;
-            /* Circular/pill shape */
-            border: 1px solid var(--btn-border);
-            background: var(--btn-bg);
-            backdrop-filter: blur(10px);
-            color: var(--fg);
-            font-weight: 300;
-            cursor: pointer;
-            font-family: var(--font-serif);
-            transition: background 0.3s, border-color 0.3s, color 0.3s;
-            text-shadow: none;
-            outline: none;
-            display: flex;
-            /* Centers the icon */
-            align-items: center;
-            justify-content: center;
+            display: none;
         }
 
         /* --- Custom Scrollbar Styling --- */
@@ -497,8 +452,8 @@
             position: absolute;
             border: 3px solid #d4d4d4;
             /*set the size of the lens:*/
-            width: 250px;
-            height: 250px;
+            width: 400px;
+            height: 400px;
             border-radius: 5px;
             cursor: none;
             /*set the background image for the lens:*/
@@ -670,843 +625,785 @@
 
     <main class="gallery-container">
 
-        <div class="gallery-item" data-artist="Unknown" data-title="16 9 21 Displanarias pronasa 100x 3.panorama1tif" data-category="Planaria"
-            
-            data-description="16 9 21 Displanarias pronasa 100x 3.panorama1tif">
+        <div class="gallery-item" data-artist="Unknown" data-title="16 9 21 Displanarias pronasa 100x 3.panorama1tif"
+            data-category="Planaria" data-description="16 9 21 Displanarias pronasa 100x 3.panorama1tif">
             <div class="image-wrapper">
-                <img src="Galery1/16_9_21_Displanarias_pronasa_100x_3.panorama1tif.jpg" alt="16 9 21 Displanarias pronasa 100x 3.panorama1tif" loading="lazy">
-                
+                <img src="Galery1/16_9_21_Displanarias_pronasa_100x_3.panorama1tif.jpg"
+                    alt="16 9 21 Displanarias pronasa 100x 3.panorama1tif" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">16 9 21 Displanarias pronasa 100x 3.panorama1tif</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="16 9 21 Displanarias pronasa 100x Aletadorsal" data-category="Planaria"
-            
-            data-description="16 9 21 Displanarias pronasa 100x Aletadorsal">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="16 9 21 Displanarias pronasa 100x Aletadorsal"
+            data-category="Planaria" data-description="16 9 21 Displanarias pronasa 100x Aletadorsal">
             <div class="image-wrapper">
-                <img src="Galery1/16_9_21_Displanarias_pronasa_100x_Aletadorsal.jpg" alt="16 9 21 Displanarias pronasa 100x Aletadorsal" loading="lazy">
-                
+                <img src="Galery1/16_9_21_Displanarias_pronasa_100x_Aletadorsal.jpg"
+                    alt="16 9 21 Displanarias pronasa 100x Aletadorsal" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">16 9 21 Displanarias pronasa 100x Aletadorsal</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="2022 11 03eye e 40x. edit" data-category="Micro"
-            
             data-description="2022 11 03eye e 40x. edit">
             <div class="image-wrapper">
                 <img src="Galery1/2022_11_03eye_e_40x._edit.jpg" alt="2022 11 03eye e 40x. edit" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Micro</div>
                 <div class="album-title">2022 11 03eye e 40x. edit</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="2 1.1g 100x DIC 20ms edit" data-category="Micro"
-            
             data-description="2 1.1g 100x DIC 20ms edit">
             <div class="image-wrapper">
                 <img src="Galery1/2_1.1g_100x_DIC_20ms_edit.jpg" alt="2 1.1g 100x DIC 20ms edit" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Micro</div>
                 <div class="album-title">2 1.1g 100x DIC 20ms edit</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="2 11 21 displanaria 100x Cili" data-category="Planaria"
-            
-            data-description="2 11 21 displanaria 100x Cili">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="2 11 21 displanaria 100x Cili"
+            data-category="Planaria" data-description="2 11 21 displanaria 100x Cili">
             <div class="image-wrapper">
                 <img src="Galery1/2_11_21_displanaria 100x_Cili.jpg" alt="2 11 21 displanaria 100x Cili" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">2 11 21 displanaria 100x Cili</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="9 22 23 Foxq2 Cherry 2" data-category="Other"
-            
             data-description="9 22 23 Foxq2 Cherry 2">
             <div class="image-wrapper">
                 <img src="Galery1/9_22_23_Foxq2_Cherry_2.jpg" alt="9 22 23 Foxq2 Cherry 2" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">9 22 23 Foxq2 Cherry 2</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="9 22 23 Foxq2 Cherry 4" data-category="Other"
-            
             data-description="9 22 23 Foxq2 Cherry 4">
             <div class="image-wrapper">
                 <img src="Galery1/9_22_23_Foxq2_Cherry_4.jpg" alt="9 22 23 Foxq2 Cherry 4" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">9 22 23 Foxq2 Cherry 4</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="9 22 23 Foxq2 GFP 2" data-category="Other"
-            
             data-description="9 22 23 Foxq2 GFP 2">
             <div class="image-wrapper">
                 <img src="Galery1/9_22_23_Foxq2_GFP_2.jpg" alt="9 22 23 Foxq2 GFP 2" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">9 22 23 Foxq2 GFP 2</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="9 22 23 Foxq2 GFP 4" data-category="Other"
-            
             data-description="9 22 23 Foxq2 GFP 4">
             <div class="image-wrapper">
                 <img src="Galery1/9_22_23_Foxq2_GFP_4.jpg" alt="9 22 23 Foxq2 GFP 4" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">9 22 23 Foxq2 GFP 4</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina" data-category="Fish"
-            
             data-description="Ciclid retina">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina.jpg" alt="Ciclid retina" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina PNA Opsin" data-category="Fish"
-            
             data-description="Ciclid retina PNA Opsin">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina_PNA_Opsin.jpg" alt="Ciclid retina PNA Opsin" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina PNA Opsin</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina TopView. Colors" data-category="Fish"
-            
             data-description="Ciclid retina TopView. Colors">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina_TopView._Colors.jpg" alt="Ciclid retina TopView. Colors" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina TopView. Colors</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina TopView. DAPIjpg" data-category="Fish"
-            
             data-description="Ciclid retina TopView. DAPIjpg">
             <div class="image-wrapper">
-                <img src="Galery1/Ciclid_retina_TopView._DAPIjpg.jpg" alt="Ciclid retina TopView. DAPIjpg" loading="lazy">
-                
+                <img src="Galery1/Ciclid_retina_TopView._DAPIjpg.jpg" alt="Ciclid retina TopView. DAPIjpg"
+                    loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina TopView. DAPIjpg</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina TopView" data-category="Fish"
-            
             data-description="Ciclid retina TopView">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina_TopView.jpg" alt="Ciclid retina TopView" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina TopView</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina TopView PNA" data-category="Fish"
-            
             data-description="Ciclid retina TopView PNA">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina_TopView_PNA.jpg" alt="Ciclid retina TopView PNA" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina TopView PNA</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ciclid retina sideView. rods" data-category="Fish"
-            
             data-description="Ciclid retina sideView. rods">
             <div class="image-wrapper">
                 <img src="Galery1/Ciclid_retina_sideView._rods.jpg" alt="Ciclid retina sideView. rods" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">Ciclid retina sideView. rods</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="Close eyes planaria true 2592x1944 upscaled" data-category="Planaria"
-            
-            data-description="Close eyes planaria true 2592x1944 upscaled">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="Close eyes planaria true 2592x1944 upscaled"
+            data-category="Planaria" data-description="Close eyes planaria true 2592x1944 upscaled">
             <div class="image-wrapper">
-                <img src="Galery1/Close eyes planaria_true-2592x1944-upscaled.jpg" alt="Close eyes planaria true 2592x1944 upscaled" loading="lazy">
-                
+                <img src="Galery1/Close eyes planaria_true-2592x1944-upscaled.jpg"
+                    alt="Close eyes planaria true 2592x1944 upscaled" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">Close eyes planaria true 2592x1944 upscaled</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Cristal" data-category="Other"
-            
             data-description="Cristal">
             <div class="image-wrapper">
                 <img src="Galery1/Cristal.jpg" alt="Cristal" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Cristal</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Fakeplanariaa" data-category="Planaria"
-            
             data-description="Fakeplanariaa">
             <div class="image-wrapper">
                 <img src="Galery1/Fakeplanariaa.jpg" alt="Fakeplanariaa" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">Fakeplanariaa</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Fluo4" data-category="Other"
-            
             data-description="Fluo4">
             <div class="image-wrapper">
                 <img src="Galery1/Fluo4.jpg" alt="Fluo4" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Fluo4</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Foxq2 )mutantsjpg" data-category="Other"
-            
             data-description="Foxq2 )mutantsjpg">
             <div class="image-wrapper">
                 <img src="Galery1/Foxq2_)mutantsjpg.jpg" alt="Foxq2 )mutantsjpg" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Foxq2 )mutantsjpg</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko Head" data-category="Lizards"
-            
             data-description="Gecko Head">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_Head.jpg" alt="Gecko Head" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko Head</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko Retina DAPI PNA" data-category="Lizards"
-            
             data-description="Gecko Retina DAPI PNA">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_Retina_DAPI_PNA.jpg" alt="Gecko Retina DAPI PNA" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko Retina DAPI PNA</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko Retina PNA" data-category="Lizards"
-            
             data-description="Gecko Retina PNA">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_Retina_PNA.jpg" alt="Gecko Retina PNA" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko Retina PNA</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko Retina SideView" data-category="Lizards"
-            
             data-description="Gecko Retina SideView">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_Retina_SideView.jpg" alt="Gecko Retina SideView" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko Retina SideView</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko Retina TL" data-category="Lizards"
-            
             data-description="Gecko Retina TL">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_Retina_TL.jpg" alt="Gecko Retina TL" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko Retina TL</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko retina side" data-category="Lizards"
-            
             data-description="Gecko retina side">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_retina_side.jpg" alt="Gecko retina side" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko retina side</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko retina top" data-category="Lizards"
-            
             data-description="Gecko retina top">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_retina_top.jpg" alt="Gecko retina top" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko retina top</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko retina top2" data-category="Lizards"
-            
             data-description="Gecko retina top2">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_retina_top2.jpg" alt="Gecko retina top2" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko retina top2</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko retina top3" data-category="Lizards"
-            
             data-description="Gecko retina top3">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_retina_top3.jpg" alt="Gecko retina top3" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko retina top3</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko skin" data-category="Lizards"
-            
             data-description="Gecko skin">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_skin.jpg" alt="Gecko skin" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko skin</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Gecko teeth" data-category="Lizards"
-            
             data-description="Gecko teeth">
             <div class="image-wrapper">
                 <img src="Galery1/Gecko_teeth.jpg" alt="Gecko teeth" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Gecko teeth</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20160412 WA0006" data-category="Other"
-            
             data-description="IMG 20160412 WA0006">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20160412-WA0006.jpg" alt="IMG 20160412 WA0006" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20160412 WA0006</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20231126 WA0004~3" data-category="Other"
-            
             data-description="IMG 20231126 WA0004~3">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20231126-WA0004~3.jpg" alt="IMG 20231126 WA0004~3" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20231126 WA0004~3</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240113 WA0013" data-category="Other"
-            
             data-description="IMG 20240113 WA0013">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240113-WA0013.jpg" alt="IMG 20240113 WA0013" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240113 WA0013</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240113 WA0017" data-category="Other"
-            
             data-description="IMG 20240113 WA0017">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240113-WA0017.jpg" alt="IMG 20240113 WA0017" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240113 WA0017</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240204 WA0004" data-category="Other"
-            
             data-description="IMG 20240204 WA0004">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240204-WA0004.jpg" alt="IMG 20240204 WA0004" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240204 WA0004</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240330 WA0014" data-category="Other"
-            
             data-description="IMG 20240330 WA0014">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240330-WA0014.jpg" alt="IMG 20240330 WA0014" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240330 WA0014</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240330 WA0021" data-category="Other"
-            
             data-description="IMG 20240330 WA0021">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240330-WA0021.jpg" alt="IMG 20240330 WA0021" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240330 WA0021</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240330 WA0022" data-category="Other"
-            
             data-description="IMG 20240330 WA0022">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240330-WA0022.jpg" alt="IMG 20240330 WA0022" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240330 WA0022</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240421 WA0012" data-category="Other"
-            
             data-description="IMG 20240421 WA0012">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240421-WA0012.jpg" alt="IMG 20240421 WA0012" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240421 WA0012</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240427 WA0016" data-category="Other"
-            
             data-description="IMG 20240427 WA0016">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240427-WA0016.jpg" alt="IMG 20240427 WA0016" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240427 WA0016</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240516 WA0015" data-category="Other"
-            
             data-description="IMG 20240516 WA0015">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240516-WA0015.jpg" alt="IMG 20240516 WA0015" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240516 WA0015</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240704 WA0001" data-category="Other"
-            
             data-description="IMG 20240704 WA0001">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240704-WA0001.jpeg" alt="IMG 20240704 WA0001" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240704 WA0001</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240721 WA0006" data-category="Other"
-            
             data-description="IMG 20240721 WA0006">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240721-WA0006.jpg" alt="IMG 20240721 WA0006" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240721 WA0006</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20240801 WA0001" data-category="Other"
-            
             data-description="IMG 20240801 WA0001">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20240801-WA0001.jpg" alt="IMG 20240801 WA0001" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20240801 WA0001</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20250204 WA0022" data-category="Other"
-            
             data-description="IMG 20250204 WA0022">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20250204-WA0022.jpg" alt="IMG 20250204 WA0022" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20250204 WA0022</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20250204 WA0023" data-category="Other"
-            
             data-description="IMG 20250204 WA0023">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20250204-WA0023.jpg" alt="IMG 20250204 WA0023" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20250204 WA0023</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20250320 WA0011" data-category="Other"
-            
             data-description="IMG 20250320 WA0011">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20250320-WA0011.jpg" alt="IMG 20250320 WA0011" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20250320 WA0011</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20250410 WA0003" data-category="Other"
-            
             data-description="IMG 20250410 WA0003">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20250410-WA0003.jpg" alt="IMG 20250410 WA0003" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20250410 WA0003</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20250504 WA0007" data-category="Other"
-            
             data-description="IMG 20250504 WA0007">
             <div class="image-wrapper">
                 <img src="Galery1/IMG-20250504-WA0007.jpg" alt="IMG 20250504 WA0007" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20250504 WA0007</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="IMG 20160517 143317561" data-category="Other"
-            
             data-description="IMG 20160517 143317561">
             <div class="image-wrapper">
                 <img src="Galery1/IMG_20160517_143317561.jpg" alt="IMG 20160517 143317561" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">IMG 20160517 143317561</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Papaya flower" data-category="Plants"
-            
             data-description="Papaya flower">
             <div class="image-wrapper">
                 <img src="Galery1/Papaya-flower.jpg" alt="Papaya flower" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Plants</div>
                 <div class="album-title">Papaya flower</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Planaria" data-category="Planaria"
-            
             data-description="Planaria">
             <div class="image-wrapper">
                 <img src="Galery1/Planaria.jpg" alt="Planaria" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">Planaria</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Ribbon Synapses Gecko" data-category="Lizards"
-            
             data-description="Ribbon Synapses Gecko">
             <div class="image-wrapper">
                 <img src="Galery1/Ribbon_Synapses_Gecko.jpg" alt="Ribbon Synapses Gecko" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Ribbon Synapses Gecko</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snake DiI 1006 MaxIP" data-category="Lizards"
-            
             data-description="Snake DiI 1006 MaxIP">
             <div class="image-wrapper">
                 <img src="Galery1/Snake_DiI_1006-MaxIP.jpg" alt="Snake DiI 1006 MaxIP" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Snake DiI 1006 MaxIP</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP" data-category="Lizards"
-            
-            data-description="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP"
+            data-category="Lizards" data-description="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP">
             <div class="image-wrapper">
-                <img src="Galery1/Snake_DiI_PNA647_DAPI_01_Right_Ind1_1007-MaxIP.jpg" alt="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP" loading="lazy">
-                
+                <img src="Galery1/Snake_DiI_PNA647_DAPI_01_Right_Ind1_1007-MaxIP.jpg"
+                    alt="Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Snake DiI PNA647 DAPI 01 Right Ind1 1007 MaxIP</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP" data-category="Lizards"
-            
-            data-description="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP"
+            data-category="Lizards" data-description="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP">
             <div class="image-wrapper">
-                <img src="Galery1/Snake_DiI_PNA647_DAPI_01_Right_Ind1_1019-MaxIP.jpg" alt="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP" loading="lazy">
-                
+                <img src="Galery1/Snake_DiI_PNA647_DAPI_01_Right_Ind1_1019-MaxIP.jpg"
+                    alt="Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Snake DiI PNA647 DAPI 01 Right Ind1 1019 MaxIP</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snake Head" data-category="Lizards"
-            
             data-description="Snake Head">
             <div class="image-wrapper">
                 <img src="Galery1/Snake_Head.jpg" alt="Snake Head" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
                 <div class="album-title">Snake Head</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 006" data-category="Other"
-            
             data-description="Snap 006">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_006.jpg" alt="Snap 006" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 006</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 041" data-category="Other"
-            
             data-description="Snap 041">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_041.jpg" alt="Snap 041" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 041</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 043" data-category="Other"
-            
             data-description="Snap 043">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_043.jpg" alt="Snap 043" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 043</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 045" data-category="Other"
-            
             data-description="Snap 045">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_045.jpg" alt="Snap 045" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 045</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 048" data-category="Other"
-            
             data-description="Snap 048">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_048.jpg" alt="Snap 048" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 048</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 05 004 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-05_004 (trimmed).mp4"
-            data-description="Snap 2024 10 05 004 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-05_004 (trimmed).mp4" data-description="Snap 2024 10 05 004 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-05_004 (trimmed)_thumb.jpg" alt="Snap 2024 10 05 004 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-05_004 (trimmed)_thumb.jpg" alt="Snap 2024 10 05 004 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1514,25 +1411,24 @@
                 <div class="album-title">Snap 2024 10 05 004 (trimmed)</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 05 004" data-category="Other"
-            
             data-description="Snap 2024 10 05 004">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_2024-10-05_004.jpg" alt="Snap 2024 10 05 004" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 2024 10 05 004</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 002 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-06_002 (trimmed).mp4"
-            data-description="Snap 2024 10 06 002 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-06_002 (trimmed).mp4" data-description="Snap 2024 10 06 002 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-06_002 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 002 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-06_002 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 002 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1540,25 +1436,24 @@
                 <div class="album-title">Snap 2024 10 06 002 (trimmed)</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 002" data-category="Other"
-            
             data-description="Snap 2024 10 06 002">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_2024-10-06_002.jpg" alt="Snap 2024 10 06 002" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 2024 10 06 002</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 003 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-06_003 (trimmed).mp4"
-            data-description="Snap 2024 10 06 003 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-06_003 (trimmed).mp4" data-description="Snap 2024 10 06 003 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-06_003 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 003 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-06_003 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 003 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1566,12 +1461,12 @@
                 <div class="album-title">Snap 2024 10 06 003 (trimmed)</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 004 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-06_004 (trimmed).mp4"
-            data-description="Snap 2024 10 06 004 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-06_004 (trimmed).mp4" data-description="Snap 2024 10 06 004 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-06_004 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 004 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-06_004 (trimmed)_thumb.jpg" alt="Snap 2024 10 06 004 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1579,38 +1474,36 @@
                 <div class="album-title">Snap 2024 10 06 004 (trimmed)</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 005" data-category="Other"
-            
             data-description="Snap 2024 10 06 005">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_2024-10-06_005.jpg" alt="Snap 2024 10 06 005" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 2024 10 06 005</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 06 007" data-category="Other"
-            
             data-description="Snap 2024 10 06 007">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_2024-10-06_007.jpg" alt="Snap 2024 10 06 007" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 2024 10 06 007</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 07 002 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-07_002 (trimmed).mp4"
-            data-description="Snap 2024 10 07 002 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-07_002 (trimmed).mp4" data-description="Snap 2024 10 07 002 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-07_002 (trimmed)_thumb.jpg" alt="Snap 2024 10 07 002 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-07_002 (trimmed)_thumb.jpg" alt="Snap 2024 10 07 002 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1618,12 +1511,13 @@
                 <div class="album-title">Snap 2024 10 07 002 (trimmed)</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 07 002 (trimmed)1" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-07_002 (trimmed)1.mp4"
+
+        <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 07 002 (trimmed)1"
+            data-category="Other" data-video-src="Galery1/Snap_2024-10-07_002 (trimmed)1.mp4"
             data-description="Snap 2024 10 07 002 (trimmed)1">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-07_002 (trimmed)1_thumb.jpg" alt="Snap 2024 10 07 002 (trimmed)1" loading="lazy">
+                <img src="Galery1/Snap_2024-10-07_002 (trimmed)1_thumb.jpg" alt="Snap 2024 10 07 002 (trimmed)1"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1631,25 +1525,24 @@
                 <div class="album-title">Snap 2024 10 07 002 (trimmed)1</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 07 003" data-category="Other"
-            
             data-description="Snap 2024 10 07 003">
             <div class="image-wrapper">
                 <img src="Galery1/Snap_2024-10-07_003.jpg" alt="Snap 2024 10 07 003" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Snap 2024 10 07 003</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Snap 2024 10 08 007 (trimmed)" data-category="Other"
-            data-video-src="Galery1/Snap_2024-10-08_007 (trimmed).mp4"
-            data-description="Snap 2024 10 08 007 (trimmed)">
+            data-video-src="Galery1/Snap_2024-10-08_007 (trimmed).mp4" data-description="Snap 2024 10 08 007 (trimmed)">
             <div class="image-wrapper">
-                <img src="Galery1/Snap_2024-10-08_007 (trimmed)_thumb.jpg" alt="Snap 2024 10 08 007 (trimmed)" loading="lazy">
+                <img src="Galery1/Snap_2024-10-08_007 (trimmed)_thumb.jpg" alt="Snap 2024 10 08 007 (trimmed)"
+                    loading="lazy">
                 <div class="video-icon"><i class="fas fa-play"></i></div>
             </div>
             <div class="album-info">
@@ -1657,229 +1550,214 @@
                 <div class="album-title">Snap 2024 10 08 007 (trimmed)</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="Star" data-category="Other"
-            
-            data-description="Star">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="Star" data-category="Other" data-description="Star">
             <div class="image-wrapper">
                 <img src="Galery1/Star.jpg" alt="Star" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">Star</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="TokayGecko arrrestin3cy3  005 right eye PNA Dapi" data-category="Lizards"
-            
-            data-description="TokayGecko arrrestin3cy3  005 right eye PNA Dapi">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="TokayGecko arrrestin3cy3  005 right eye PNA Dapi"
+            data-category="Lizards" data-description="TokayGecko arrrestin3cy3  005 right eye PNA Dapi">
             <div class="image-wrapper">
-                <img src="Galery1/TokayGecko_arrrestin3cy3_ 005_right eye_PNA_Dapi.jpg" alt="TokayGecko arrrestin3cy3  005 right eye PNA Dapi" loading="lazy">
-                
+                <img src="Galery1/TokayGecko_arrrestin3cy3_ 005_right eye_PNA_Dapi.jpg"
+                    alt="TokayGecko arrrestin3cy3  005 right eye PNA Dapi" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Lizards</div>
-                <div class="album-title">TokayGecko arrrestin3cy3  005 right eye PNA Dapi</div>
+                <div class="album-title">TokayGecko arrrestin3cy3 005 right eye PNA Dapi</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="Tricomes plantsjpg" data-category="Plants"
-            
             data-description="Tricomes plantsjpg">
             <div class="image-wrapper">
                 <img src="Galery1/Tricomes_plantsjpg.jpg" alt="Tricomes plantsjpg" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Plants</div>
                 <div class="album-title">Tricomes plantsjpg</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="ciclid eye" data-category="Fish"
-            
             data-description="ciclid eye">
             <div class="image-wrapper">
                 <img src="Galery1/ciclid_eye.jpg" alt="ciclid eye" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">ciclid eye</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="ciclid skin" data-category="Fish"
-            
             data-description="ciclid skin">
             <div class="image-wrapper">
                 <img src="Galery1/ciclid_skin.jpg" alt="ciclid skin" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Fish</div>
                 <div class="album-title">ciclid skin</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="imag65e 2048x2048 upscaled" data-category="Other"
-            
             data-description="imag65e 2048x2048 upscaled">
             <div class="image-wrapper">
                 <img src="Galery1/imag65e-2048x2048-upscaled.jpg" alt="imag65e 2048x2048 upscaled" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">imag65e 2048x2048 upscaled</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="image59659" data-category="Other"
-            
             data-description="image59659">
             <div class="image-wrapper">
                 <img src="Galery1/image59659.jpg" alt="image59659" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">image59659</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="image65 1009x875 upscaled" data-category="Other"
-            
             data-description="image65 1009x875 upscaled">
             <div class="image-wrapper">
                 <img src="Galery1/image65-1009x875-upscaled.jpg" alt="image65 1009x875 upscaled" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">image65 1009x875 upscaled</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="image65 1009x875 upscaled" data-category="Other"
-            
             data-description="image65 1009x875 upscaled">
             <div class="image-wrapper">
                 <img src="Galery1/image65-1009x875-upscaled.png" alt="image65 1009x875 upscaled" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">image65 1009x875 upscaled</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="live planarian edif white 2592x1944 upscaled" data-category="Planaria"
-            
-            data-description="live planarian edif white 2592x1944 upscaled">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="live planarian edif white 2592x1944 upscaled"
+            data-category="Planaria" data-description="live planarian edif white 2592x1944 upscaled">
             <div class="image-wrapper">
-                <img src="Galery1/live planarian_edif_white-2592x1944-upscaled.jpg" alt="live planarian edif white 2592x1944 upscaled" loading="lazy">
-                
+                <img src="Galery1/live planarian_edif_white-2592x1944-upscaled.jpg"
+                    alt="live planarian edif white 2592x1944 upscaled" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Planaria</div>
                 <div class="album-title">live planarian edif white 2592x1944 upscaled</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="moss" data-category="Plants"
-            
             data-description="moss">
             <div class="image-wrapper">
                 <img src="Galery1/moss.jpeg" alt="moss" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Plants</div>
                 <div class="album-title">moss</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="moss2" data-category="Plants"
-            
             data-description="moss2">
             <div class="image-wrapper">
                 <img src="Galery1/moss2.jpeg" alt="moss2" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Plants</div>
                 <div class="album-title">moss2</div>
             </div>
         </div>
-    
-        <div class="gallery-item" data-artist="Unknown" data-title="panoramic confocal DII 1908x1407 upscaled" data-category="Other"
-            
-            data-description="panoramic confocal DII 1908x1407 upscaled">
+
+        <div class="gallery-item" data-artist="Unknown" data-title="panoramic confocal DII 1908x1407 upscaled"
+            data-category="Other" data-description="panoramic confocal DII 1908x1407 upscaled">
             <div class="image-wrapper">
-                <img src="Galery1/panoramic_confocal DII-1908x1407-upscaled.jpg" alt="panoramic confocal DII 1908x1407 upscaled" loading="lazy">
-                
+                <img src="Galery1/panoramic_confocal DII-1908x1407-upscaled.jpg"
+                    alt="panoramic confocal DII 1908x1407 upscaled" loading="lazy">
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">panoramic confocal DII 1908x1407 upscaled</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="presentation initial" data-category="Other"
-            
             data-description="presentation initial">
             <div class="image-wrapper">
                 <img src="Galery1/presentation_initial.jpg" alt="presentation initial" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">presentation initial</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="sticherus" data-category="Plants"
-            
             data-description="sticherus">
             <div class="image-wrapper">
                 <img src="Galery1/sticherus.jpg" alt="sticherus" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Plants</div>
                 <div class="album-title">sticherus</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="tophead full Aburtonui" data-category="Other"
-            
             data-description="tophead full Aburtonui">
             <div class="image-wrapper">
                 <img src="Galery1/tophead_full_Aburtonui.jpg" alt="tophead full Aburtonui" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Other</div>
                 <div class="album-title">tophead full Aburtonui</div>
             </div>
         </div>
-    
+
         <div class="gallery-item" data-artist="Unknown" data-title="xGq 100x edit" data-category="Micro"
-            
             data-description="xGq 100x edit">
             <div class="image-wrapper">
                 <img src="Galery1/xGq_100x_edit.jpg" alt="xGq 100x edit" loading="lazy">
-                
+
             </div>
             <div class="album-info">
                 <div class="album-artist">Micro</div>
                 <div class="album-title">xGq 100x edit</div>
             </div>
         </div>
-    
-</main>
+
+    </main>
 
     <div id="myModal" class="modal">
         <span class="close-btn-top">&times;</span>
@@ -1889,7 +1767,7 @@
             <video id="modalVideo" class="modal-content" loop playsinline muted
                 style="display: none; width: 100%; height: 100%; object-fit: contain;"></video>
             <div class="zoom-lens">
-                <canvas id="zoomCanvas" width="250" height="250"
+                <canvas id="zoomCanvas" width="400" height="400"
                     style="display: none; width: 100%; height: 100%;"></canvas>
             </div>
         </div>
@@ -2388,3 +2266,5 @@
 
     </script>
 </body>
+
+</html>
